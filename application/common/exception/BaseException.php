@@ -17,7 +17,7 @@ class BaseException extends Exception {
     public $code = 400;
     public $msg = 'invalid parameters';
     public $success = 0;
-    public $errorCode = 999;
+    public $errorCode = 0;
 
     /**
      * 构造函数，接收一个关联数组

@@ -19,7 +19,7 @@ class Index extends Controller
      */
     protected function verifySign(){
         $sign = input('sign','');
-        $sign_time = input('sign_time','');
+        $sign_time = input('sign_time',0);
         $salt = input('salt','');
 
         $sign_sdk = new SignSDK($sign,$salt,$sign_time);
@@ -43,6 +43,7 @@ class Index extends Controller
         if (true !== $validate) {
             // 验证失败
             $over['success']='0';
+            $over['msg']=$validate;
         }else{
             $data['password']=md5($data['password']);
             $res = $user->save($data);
@@ -256,6 +257,7 @@ class Index extends Controller
     }
 
     public function getServerIP(){
+        $IpSet['success'] = '1';
         $IpSet['ip'] = 'http://bnp.zzylx.top/notepadapi/';
         return json($IpSet);
     }

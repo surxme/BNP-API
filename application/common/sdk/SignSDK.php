@@ -18,7 +18,7 @@ class SignSDK
 
     private $sign = '';
     private $salt = '';
-    private $sign_time = '';
+    private $sign_time = 0;
 
     public function __construct($sign,$salt,$sign_time)
     {
@@ -41,6 +41,12 @@ class SignSDK
             throw new ApiException([
                 'success' => '0',
                 'msg' => '缺少签名时间参数'
+            ]);
+        }
+        if(time() - $this->sign_time > 300){
+            throw new ApiException([
+                'success' => '0',
+                'msg' => '请求过期'
             ]);
         }
         if(empty($this->salt)){

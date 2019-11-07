@@ -15,7 +15,7 @@ class User extends Model
 {
     protected $table='users';
     protected $pk='uid';
-    public $autoWriteTimestamp = true;
+    public $autoWriteTimestamp = 'datetime';
     protected $createTime = 'created_at';
     protected $updateTime = 'updated_at';
 
